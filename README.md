@@ -29,7 +29,7 @@ and initialize like this:
 
     const myIngrow = new ingrow("API_KEY", "PROJECT_ID", "USER_ID")
 
-By default ingrow set a cookie for every user, that can be gravely useful for data analysis
+By default ingrow set a cookie for every user that can be gravely useful for data analysis
 
 By default the IP of user will attached automatically to events but You can
 overwrite by sending the according IP in your custom data with `IP` key.
@@ -44,5 +44,5 @@ After initializing SDK, you can send event using `sendEvent()` method. You must 
         element_type: "Button",
         time: new Date(),
     })
-
+ 
 `sendEvent` method will return a promise, so you can handle success or failure of event sending, like other promises.
