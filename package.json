@@ -1,14 +1,15 @@
 {
   "name": "ingrow-js-sdk",
-  "version": "1.0.0",
+  "version": "1.0.8",
   "description": "javascript SDK to using the Ingrow event streaming platform",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d dist"
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.com:in-grow/front-end/javascript-sdk.git"
+    "url": "https://github.com/ingrowco/ingrow-js-sdk.git"
   },
   "keywords": [
     "ingrow",
@@ -21,5 +22,10 @@
     "ingrow-js-sdk"
   ],
   "author": "Ashkan4ever ashkan4ever@live.com ashkan4ever.com",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
 }
