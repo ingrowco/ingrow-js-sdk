@@ -1,42 +1,20 @@
-class cookieHandler {
-  static getRandomString() {
-    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-    var result = ''
-    for ( var i = 0; i < 32; i++ ) {
-        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length))
-    }
-    return result
+function getRandomString(len) {
+  let s = ""
+  while (s.length < len)
+    s += Math.random().toString(36).substr(2, len - s.length)
+  return s
+}
+
+function getCreatedAnonymousId() {
+  const ingrowKeyName = "ingrow_events_anonymous_id"
+  let anonymousId = localStorage.getItem(ingrowKeyName)
+
+  if (!anonymousId) {
+    anonymousId = getRandomString(32)
+    localStorage.setItem(ingrowKeyName, anonymousId)
   }
 
-  static setCookie(cname) {
-    const cookie = cookieHandler.getRandomString()
-    document.cookie = cname + "=" + cookie
-    return cookie
-  }
-  
-  static getCookie(cname) {
-    var name = cname + "="
-    var ca = document.cookie.split(';')
-    for(var i = 0; i < ca.length; i++) {
-      var c = ca[i]
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1)
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length)
-      }
-    }
-    return ""
-  }
-  
-  static checkCookie(cname) {
-    var id = cookieHandler.getCookie(cname)
-    if (id != "") {
-      return true
-    } else {
-      return false
-    }
-  }
+  return anonymousId
 }
 
 export default class ingrow {
@@ -44,9 +22,7 @@ export default class ingrow {
     this.apiKey = apiKey
     this.projectID = projectID
     this.apiEndpoint = "https://event.ingrow.co"
-    this.anonymousId = cookieHandler.checkCookie("ingrow_events_anonymous_id") 
-      ? cookieHandler.getCookie("ingrow_events_anonymous_id") 
-      : cookieHandler.setCookie("ingrow_events_anonymous_id")
+    this.anonymousId = getCreatedAnonymousId()
     this.ip = { IP: "autofill" }
   }
 
