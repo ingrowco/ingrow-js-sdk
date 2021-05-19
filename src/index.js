@@ -23,7 +23,7 @@ export default class ingrow {
     this.projectID = projectID
     this.apiEndpoint = "https://event.ingrow.co"
     this.anonymousId = getCreatedAnonymousId()
-    this.ip = { IP: "autofill" }
+    this.ip = "autofill"
   }
 
   sendEvent(stream, data, userId = "") {
@@ -37,14 +37,22 @@ export default class ingrow {
           stream,
           project: this.projectID,
         },
-        enrichment: [{
-          name: "session",
-          input: {
-            anonymous_id: this.anonymousId,
-            user_id: userId,
+        enrichment: [
+          {
+            name: "session",
+            input: {
+              anonymous_id: this.anonymousId,
+              user_id: userId,
+            }
+          },
+          {
+            name: "ip",
+            input: {
+              ip: this.ip,
+            }
           }
-        }],
-        event: { ...this.IP, ...data },
+        ],
+        event: data,
       }),
     })
   }
