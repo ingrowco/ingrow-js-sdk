@@ -17,6 +17,12 @@ function getCreatedAnonymousId() {
   return anonymousId
 }
 
+function getDeviceInfo() {
+  const { userAgent, appName: browserName } = navigator;
+  const { screen: { width, height } } = window;
+  return { userAgent, browserName, screen: { width, height } };
+}
+
 export default class ingrow {
   constructor(apiKey, projectID) {
     this.apiKey = apiKey
@@ -26,7 +32,14 @@ export default class ingrow {
     this.ip = "autofill"
   }
 
-  sendEvent(stream, data, userId = "") {
+  sendEvent(stream, data, userId = "", sendDeviceInfo = false) {
+    const enrichment = [];
+    const enrich = (name, input) => { enrichment.push({ name , input }) }
+
+    enrich('session', { anonymous_id: this.anonymousId, user_id: userId });
+    enrich('ip', { ip: this.ip });
+    if (sendDeviceInfo) { enrich('browser', getDeviceInfo()); }
+
     return fetch(`${this.apiEndpoint}/v1`, {
       method: "POST",
       headers: {
@@ -37,21 +50,7 @@ export default class ingrow {
           stream,
           project: this.projectID,
         },
-        enrichment: [
-          {
-            name: "session",
-            input: {
-              anonymous_id: this.anonymousId,
-              user_id: userId,
-            }
-          },
-          {
-            name: "ip",
-            input: {
-              ip: this.ip,
-            }
-          }
-        ],
+        enrichment,
         event: data,
       }),
     })
