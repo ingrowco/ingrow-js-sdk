@@ -1,6 +1,6 @@
 ## JS SDK
 
-This Javascript SDK is created by [Ingrow](https://ingrow.co) to using the Ingrow event streaming platform. It provides the functionality of collecting and sending events to the Ingrow system and make insights based on them.
+This Javascript SDK is created by [Ingrow](https://ingrow.co) to use the Ingrow event streaming platform. It provides the functionality of collecting and sending events to the Ingrow system and make insights based on them.
 
 ## Install
 
@@ -15,8 +15,14 @@ Or with yarn:
 ## Import
 
 Import ingrow with:
+```js
+import ingrow from "ingrow-js-sdk"
+```
 
-    import ingrow from "ingrow-js-sdk"
+Or copy the following tag in your project
+```html
+<script src="https://github.com/ingrowco/ingrow-js-sdk/blob/main/dist/index.js" />
+```
 
 ## Initialize
 
@@ -41,12 +47,14 @@ overwrite by sending the according IP in your custom data with `IP` key.
 ## Send Event
 
 After initializing SDK, you can send event using `sendEvent()` method. You must pass stream name and custom data to sendEvent method. for example:
-
-    myIngrow.sendEvent("STREAM_NAME", {
-        description: "paginate",
-        event_type: "Click",
-        element_type: "Button",
-        time: new Date(),
-    })
- 
+```js
+myIngrow.sendEvent("STREAM_NAME", {
+    description: "paginate",
+    event_type: "Click",
+    element_type: "Button",
+}, {
+    sendDeviceInfo: false, // sends device info (default is false)
+    done: () => {}, // it will be called when it gets done
+})
+```
 `sendEvent` method will return a promise, so you can handle success or failure of event sending, like other promises.

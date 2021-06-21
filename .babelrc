@@ -1,6 +1,7 @@
 {
   "presets": [
-    "es2015"
+    "es2015", 
+    "minify"
   ],
   "plugins": ["babel-plugin-transform-object-rest-spread"]
 }

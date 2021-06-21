@@ -37,7 +37,8 @@ export default class ingrow {
     this.userId = userId || ""
   }
 
-  sendEvent(stream, data, sendDeviceInfo = false) {
+  sendEvent(stream, data, options) {
+    const { sendDeviceInfo = false, done } = options || {}
     const enrichment = [];
     const enrich = (name, input) => { enrichment.push({ name , input }) }
 
@@ -45,19 +46,20 @@ export default class ingrow {
     enrich('ip', { ip: this.ip });
     if (sendDeviceInfo) { enrich('device', getDeviceInfo()); }
 
-    return fetch(`${this.apiEndpoint}/v1`, {
-      method: "POST",
-      headers: {
-        "api-key": this.apiKey,
-      },
-      body: JSON.stringify({
-        ingrow: {
-          stream,
-          project: this.projectID,
-        },
-        enrichment,
-        event: data,
-      }),
-    })
+    const sendingData = {
+      ingrow: { stream, project: this.projectID },
+      enrichment,
+      event: data,
+    }
+    const xhr = new XMLHttpRequest();
+    xhr.setRequestHeader("api-key", this.apiKey);
+    xhr.open("POST", `${this.apiEndpoint}/v1`);
+    xhr.send(JSON.stringify(sendingData));
+    xhr.onload = function () {
+      done && done(xhr.response);
+    };
+    xhr.onerror = function () {
+      done && done(null, xhr.response);
+    };
   }
 }
