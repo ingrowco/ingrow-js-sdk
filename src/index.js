@@ -24,15 +24,20 @@ function getDeviceInfo() {
 }
 
 export default class ingrow {
-  constructor(apiKey, projectID) {
+  constructor(apiKey, projectID, userId) {
     this.apiKey = apiKey
     this.projectID = projectID
     this.apiEndpoint = "https://event.ingrow.co"
     this.anonymousId = getCreatedAnonymousId()
     this.ip = "autofill"
+    this.setUserID(userId)
+  }
+  
+  setUserID(userId) {
+    this.userId = userId || ""
   }
 
-  sendEvent(stream, data, userId = "", sendDeviceInfo = false) {
+  sendEvent(stream, data, sendDeviceInfo = false) {
     const enrichment = [];
     const enrich = (name, input) => { enrichment.push({ name , input }) }
 
