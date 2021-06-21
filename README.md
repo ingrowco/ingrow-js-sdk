@@ -21,14 +21,18 @@ Import ingrow with:
 ## Initialize
 
 After importing SDK, you must initialize it by giving `api key` and `project id` that you have received from Ingrow panel.
-
+```js
     const myIngrow = new ingrow("API_KEY", "PROJECT_ID")
-
+```
 It is possible to trace events related to specific user by adding `user id` to arguments
 and initialize like this:
-
+```js
     const myIngrow = new ingrow("API_KEY", "PROJECT_ID", "USER_ID")
-
+```
+    Or using setUserID method
+```js
+    myIngrow.setUserID("USER_ID")
+```
 By default ingrow set a cookie for every user that can be gravely useful for data analysis
 
 By default the IP of user will attached automatically to events but You can
