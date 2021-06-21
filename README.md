@@ -36,13 +36,13 @@ overwrite by sending the according IP in your custom data with `IP` key.
 
 ## Send Event
 
-After initializing SDK, you can send event using `sendEvent()` method. You must pass stream name and custom data to sendEvent method. for example:
+After initializing SDK, you can send event using `sendEvent()` method. You must pass stream name and custom data to sendEvent method, and also sendDeviceInfo which appends some information about user's device to the sending data if it was true. for example:
 
     myIngrow.sendEvent("STREAM_NAME", {
         description: "paginate",
         event_type: "Click",
         element_type: "Button",
         time: new Date(),
-    })
+    }, sendDeviceInfo = false)
  
 `sendEvent` method will return a promise, so you can handle success or failure of event sending, like other promises.
