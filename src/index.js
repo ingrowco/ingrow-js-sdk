@@ -4,14 +4,13 @@ function getRandomString(len) {
     s += Math.random().toString(36).substr(2, len - s.length)
   return s
 }
-
 function getCreatedAnonymousId() {
   const ingrowKeyName = "ingrow_events_anonymous_id"
-  let anonymousId = localStorage.getItem(ingrowKeyName)
+  let anonymousId = window.localStorage?.getItem(ingrowKeyName)
 
   if (!anonymousId) {
     anonymousId = getRandomString(32)
-    localStorage.setItem(ingrowKeyName, anonymousId)
+    window.localStorage?.setItem(ingrowKeyName, anonymousId)
   }
 
   return anonymousId
