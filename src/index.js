@@ -38,7 +38,7 @@ export default class ingrow {
 
     enrich('session', { anonymous_id: this.anonymousId, user_id: userId });
     enrich('ip', { ip: this.ip });
-    if (sendDeviceInfo) { enrich('browser', getDeviceInfo()); }
+    if (sendDeviceInfo) { enrich('device', getDeviceInfo()); }
 
     return fetch(`${this.apiEndpoint}/v1`, {
       method: "POST",
