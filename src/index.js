@@ -18,9 +18,9 @@ function getCreatedAnonymousId() {
 }
 
 function getDeviceInfo() {
-  const { userAgent, appName: browserName } = navigator;
+  const { userAgent } = navigator;
   const { screen: { width, height } } = window;
-  return { userAgent, browserName, screen: { width, height } };
+  return { userAgent, screen: { width, height } };
 }
 
 export default class ingrow {
