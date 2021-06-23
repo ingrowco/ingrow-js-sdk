@@ -5,13 +5,31 @@ function getRandomString(len) {
   return s
 }
 
+function saveValue(key, value) {
+  if (window.localStorage) {
+    window.localStorage.setItem(key, value)
+  } else {
+    let date = new Date();
+    date.setTime(date.getTime() + (315360000000)); //10 years
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = `${key}=${value}; ${expires}`;
+  }
+}
+function getValue(key) {
+  if (window.localStorage) {
+    return window.localStorage.getItem(key)
+  } else {
+    return document.cookie.match('(^|;)\\s*' + key + '\\s*=\\s*([^;]+)')?.pop() || ''
+  }
+}
+
 function getCreatedAnonymousId() {
   const ingrowKeyName = "ingrow_events_anonymous_id"
-  let anonymousId = localStorage.getItem(ingrowKeyName)
+  let anonymousId = getValue(ingrowKeyName)
 
   if (!anonymousId) {
     anonymousId = getRandomString(32)
-    localStorage.setItem(ingrowKeyName, anonymousId)
+    saveValue(ingrowKeyName, anonymousId)
   }
 
   return anonymousId
@@ -23,7 +41,7 @@ function getDeviceInfo() {
   return { userAgent, screen: { width, height } };
 }
 
-export default class ingrow {
+export default class Ingrow {
   constructor(apiKey, projectID, userId) {
     this.apiKey = apiKey
     this.projectID = projectID
