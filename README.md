@@ -1,37 +1,32 @@
-## JS SDK
+## Ingrow JS SDK
 
-This Javascript SDK is created by [Ingrow](https://ingrow.co) to use the Ingrow event streaming platform. It provides the functionality of sending events to the Ingrow system to make insights based on them.
+This Javascript SDK is created by [Ingrow](https://ingrow.co). It helps you send events in your web applications to the Ingrow event streaming platform to make insights based on them.
 
-## Install
+## Install and Initialize ingrow-js-sdk in an HTML file
+```HTML
+<script src="https://github.com/ingrowco/ingrow-js-sdk/blob/main/dist/index.js" />
+<script>
+    var ingrow = new Ingrow("API_KEY", "PROJECT_ID")
+</script>
+```
 
-Install with npm:
+## Install and Initialize ingrow-js-sdk in front-end JavaScript projects
+
+Install with npm or yarn
 ```sh
 npm install ingrow-js-sdk
 ```
-Or with yarn:
-```sh
-yarn add ingrow-js-sdk
-```
-
-## Import
-
-Import ingrow with:
+Import SDK
 ```js
 import Ingrow from "ingrow-js-sdk"
 ```
-Or copy the following tag in your project
-```html
-<script src="https://github.com/ingrowco/ingrow-js-sdk/blob/main/dist/index.js" />
-```
-
-## Initialize
-
 After importing SDK, you must initialize it by giving `api key` and `project id` that you have received from Ingrow panel.
 ```js
 const myIngrow = new Ingrow("API_KEY", "PROJECT_ID")
 ```
-It is possible to trace events related to specific user by adding `user id` to arguments
-and initialize like this:
+
+### Set your users
+It is possible to trace events related to specific user by adding `user id` to arguments and initialize like this:
 ```js
 const myIngrow = new Ingrow("API_KEY", "PROJECT_ID", "USER_ID")
 ```
