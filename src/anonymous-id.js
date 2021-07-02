@@ -1,7 +1,8 @@
 function getRandomString(len) {
-  let s = ""
-  while (s.length < len)
+  let s = ''
+  for (var i = 0; i < len; i++) {
     s += Math.random().toString(36).substr(2, len - s.length)
+  }
   return s
 }
 
