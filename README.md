@@ -2,6 +2,9 @@
 
 This Javascript SDK is created by [Ingrow](https://ingrow.co). It helps you send events in your web applications to the Ingrow event streaming platform to make insights based on them.
 
+[![MIT License][license-image]][license-url]
+[![NPM version][npm-version-image]][npm-url]
+
 ## Install and Initialize ingrow-js-sdk in an HTML file
 ```HTML
 <script src="https://github.com/ingrowco/ingrow-js-sdk/blob/main/dist/index.js" />
@@ -52,3 +55,9 @@ myIngrow.sendEvent("STREAM_NAME", {
     done: () => {}, // it will be called when it gets done
 })
 ```
+
+[license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
+[license-url]: LICENSE
+
+[npm-url]: https://www.npmjs.com/package/ingrow-js-sdk
+[npm-version-image]: http://img.shields.io/npm/v/ingrow-js-sdk.svg?style=flat
