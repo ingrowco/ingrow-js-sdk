@@ -7,9 +7,9 @@ This Javascript SDK is created by [Ingrow](https://ingrow.co). It helps you send
 
 ## Install and Initialize ingrow-js-sdk in an HTML file
 ```HTML
-<script src="https://github.com/ingrowco/ingrow-js-sdk/blob/main/dist/index.js" />
+<script type="text/javascript"  src="https://cdn.jsdelivr.net/gh/ingrowco/ingrow-js-sdk@latest/dist/bundle.min.js"></script>
 <script>
-    var ingrow = new Ingrow("API_KEY", "PROJECT_ID")
+    var myIngrow = new Ingrow("API_KEY", "PROJECT_ID")
 </script>
 ```
 
@@ -28,7 +28,7 @@ After importing SDK, you must initialize it by giving `api key` and `project id`
 const myIngrow = new Ingrow("API_KEY", "PROJECT_ID")
 ```
 
-### Set your users
+## Set your users
 It is possible to trace events related to specific user by adding `user id` to arguments and initialize like this:
 ```js
 const myIngrow = new Ingrow("API_KEY", "PROJECT_ID", "USER_ID")
