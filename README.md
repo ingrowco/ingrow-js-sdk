@@ -7,7 +7,7 @@ This Javascript SDK is created by [Ingrow](https://ingrow.co). It helps you send
 
 ## Install and Initialize ingrow-js-sdk in an HTML file
 ```HTML
-<script type="text/javascript"  src="https://cdn.jsdelivr.net/gh/ingrowco/ingrow-js-sdk@latest/dist/bundle.min.js"></script>
+<script type="text/javascript"  src="https://ingrow-cdn.s3.ir-thr-at1.arvanstorage.com/ingrow-sdk.js"></script>
 <script>
     var myIngrow = new Ingrow("API_KEY", "PROJECT_ID")
 </script>
