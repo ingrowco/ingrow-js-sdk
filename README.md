@@ -46,14 +46,21 @@ overwrite by sending the according IP in your custom data with `IP` key.
 
 After initializing SDK, you can send event using `sendEvent()` method. You must pass stream name and custom data, and optionally pass options which is described bellow. for example:
 ```js
-myIngrow.sendEvent("STREAM_NAME", {
+myIngrow.sendEvent({
     description: "paginate",
     event_type: "Click",
     element_type: "Button",
-}, {
+}, "stream_name" , {
     sendDeviceInfo: false, // append some information about users device
     done: () => {}, // it will be called when it gets done
 })
+```
+
+In most cases you dont need to change streamName for each sendEvent calls so you can also change default stream name using the following command
+```js
+myIngrow.sendEvent(jsonData) // stream name would be "events"
+myIngrow.setDefaultStreamName("stream_name")
+myIngrow.sendEvent(jsonData) // stream name would be "stream_name"
 ```
 
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
